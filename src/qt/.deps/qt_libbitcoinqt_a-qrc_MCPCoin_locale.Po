@@ -1,0 +1,1 @@
+qt/qt_libbitcoinqt_a-qrc_MCPCoin_locale.o: qt/qrc_MCPCoin_locale.cpp
