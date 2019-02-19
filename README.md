@@ -1,7 +1,7 @@
 # MobilePayCoin
 MCPC is a payment platform and marketplace that is utilized on top of blockchain technology to provide an avenue for anybody to issue or receive cryptocurrency.
 
-<h2>Coin Specifications</h2><br>
+<h2>Coin Specifications</h2>
 Ticker: MCPC<br>
 Algorithm: Quark<br>
 Type: PoS + Masternode<br>
