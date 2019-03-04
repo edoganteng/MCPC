@@ -17,6 +17,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/lexical_cast.hpp>
+#include "chain.h"
 
 #include <algorithm>
 #include <boost/assign/list_of.hpp>
@@ -452,6 +453,7 @@ std::string CObfuscationPool::GetStatus()
     showingObfuScationMessage += 10;
     std::string suffix = "";
 
+    int nHeight;
     if (chainActive.Tip()->nHeight - cachedLastSuccess < minBlockSpacing || !masternodeSync.IsBlockchainSynced()) {
         return strAutoDenomResult;
     }
@@ -2098,7 +2100,8 @@ bool CObfuScationSigner::IsVinAssociatedWithPubkey(CTxIn& vin, CPubKey& pubkey)
     uint256 hash;
     if (GetTransaction(vin.prevout.hash, txVin, hash, true)) {
         BOOST_FOREACH (CTxOut out, txVin.vout) {
-            if (out.nValue == Params().MasternodeCollateralLimit() * COIN) {
+          int nHeight;
+            if (out.nValue == Params().MasternodeCollateralLimit(nHeight) * COIN) {
                 if (out.scriptPubKey == payee2) return true;
             }
         }

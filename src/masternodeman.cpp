@@ -373,7 +373,7 @@ int CMasternodeMan::stable_size ()
 
     return nStable_size;
 }
-    
+
 int CMasternodeMan::CountEnabled(int protocolVersion)
 {
     int i = 0;
@@ -985,9 +985,10 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         // make sure it's still unspent
         //  - this is checked later by .check() in many places and by ThreadCheckObfuScationPool()
 
+        int nHeight;
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(((Params().MasternodeCollateralLimit() - 0.01)) * COIN, obfuScationPool.collateralPubKey);
+        CTxOut vout = CTxOut(((Params().MasternodeCollateralLimit(nHeight) - 0.01)) * COIN, obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 

@@ -55,11 +55,12 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
     (0, uint256("0000c4489c1006441581b2af1992c428dc3681b3b9a07bfc14cdcf27e384832e"))
     (50000,uint256("d57c8adce62fdbcc37c047351f0961b1f5dfae90f39c382957cbdc497927bfca"))
-    (99290,uint256("1354eebdd44cf434d5c296d3f6c1675942ecad6ecff6a55069d47e014ddf023f"));
+    (99290,uint256("1354eebdd44cf434d5c296d3f6c1675942ecad6ecff6a55069d47e014ddf023f"))
+    (117000,uint256("a2c37f402e3f9fb22c6060671d91f9c48d0dec1bc427852c9ac075baca4224fe"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1550589573, // * UNIX timestamp of last checkpoint block
-    199493,          // * total number of transactions between genesis and last checkpoint
+    1551666135, // * UNIX timestamp of last checkpoint block
+    246667,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     5000        // * estimated number of transactions per day after checkpoint
 };
@@ -114,6 +115,8 @@ public:
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 21000000 * COIN;
 
+        nForkTimestamp = 1552219200;  // Sunday, 10 March 2019, 12:00:00 GMT/UTC
+
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
          * be spent as it did not originally exist in the database.
@@ -138,16 +141,16 @@ public:
         genesis.nTime = 1544570030;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 338727;
-		
+
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0000c4489c1006441581b2af1992c428dc3681b3b9a07bfc14cdcf27e384832e"));
         assert(genesis.hashMerkleRoot == uint256("08afee2ee36e29e693de50e4511c90d4e722039e548d4d36ac2bee3b493f8295"));
 
         vSeeds.push_back(CDNSSeedData("104.156.239.129", "104.156.239.129"));         // Single node address
         vSeeds.push_back(CDNSSeedData("209.250.243.247", "209.250.243.247"));           // Single node address
-	vSeeds.push_back(CDNSSeedData("149.28.245.240", "149.28.245.240"));         // Single node address
+	      vSeeds.push_back(CDNSSeedData("149.28.245.240", "149.28.245.240"));         // Single node address
         vSeeds.push_back(CDNSSeedData("108.61.185.240", "108.61.185.240"));           // Single node address
-	vSeeds.push_back(CDNSSeedData("66.42.115.208", "66.42.115.208"));         // Single node address
+	      vSeeds.push_back(CDNSSeedData("66.42.115.208", "66.42.115.208"));         // Single node address
         vSeeds.push_back(CDNSSeedData("144.202.52.185", "144.202.52.185"));           // Single node address
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 50);
@@ -171,9 +174,9 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "0488207ddc1c73a064e636d80ff776f81bdcd6f4a898c9783d128bf487c33db39a6fd2d44b194b141bcc0425d5c3cbd6db561dcf129a8188eefc15d0667317f27d";
+        strSporkKey = "048602748E8ED8D365763E080694E3F5ADA1C99CBA6E3D9B1822B214A1A9F73E9A4C04371234AD547BA2460431F9A33F8B6E67F6605AE9DDDB7CEEE6C59DE2EABC";
         strObfuscationPoolDummyAddress = "MCpRnqvRHKq8YmXkvYQV1AQmhSr4hzsXGA";
-		
+
         nStartMasternodePayments = 1533225982; //Wed, 2 Aug 2018 16:36:16 GMT
     }
 
