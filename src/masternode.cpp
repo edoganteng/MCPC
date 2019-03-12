@@ -210,10 +210,9 @@ void CMasternode::Check(bool forceCheck)
     }
 
     if (!unitTest) {
-      int nHeight;
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(((Params().MasternodeCollateralLimit(nHeight) - 0.01)) * COIN, obfuScationPool.collateralPubKey);
+        CTxOut vout = CTxOut(((GetMNCollateral(chainActive.Height()) - 0.01)) * COIN, obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 
@@ -571,10 +570,9 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
             mnodeman.Remove(pmn->vin);
     }
 
-    int nHeight;
     CValidationState state;
     CMutableTransaction tx = CMutableTransaction();
-    CTxOut vout = CTxOut(((Params().MasternodeCollateralLimit(nHeight) - 0.01)) * COIN, obfuScationPool.collateralPubKey);
+    CTxOut vout = CTxOut(((GetMNCollateral(chainActive.Height()) - 0.01)) * COIN, obfuScationPool.collateralPubKey);
     tx.vin.push_back(vin);
     tx.vout.push_back(vout);
 

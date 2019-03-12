@@ -468,8 +468,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
 
     // Filter
     BOOST_FOREACH (const COutput& out, vCoins) {
-      int nHeight;
-        if (out.tx->vout[out.i].nValue == Params().MasternodeCollateralLimit(nHeight) * COIN) { //exactly
+        if (out.tx->vout[out.i].nValue == GetMNCollateral(chainActive.Height()) * COIN) { //exactly
             filteredCoins.push_back(out);
         }
     }

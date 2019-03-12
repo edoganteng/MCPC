@@ -111,11 +111,10 @@ public:
         nLastPOWBlock = 140;
         nMaturity = 59;
         nMasternodeCountDrift = 20;
-        nMasternodeCollateralLimit = 1000;
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 21000000 * COIN;
 
-        nForkTimestamp = 1552219200;  // Sunday, 10 March 2019, 12:00:00 GMT/UTC
+        nForkTimestamp = 1552392000;  // Tuesday, 12 March 2019, 12:00:00 GMT/UTC
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -212,7 +211,6 @@ public:
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
-        nMasternodeCollateralLimit = 1000;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
 
