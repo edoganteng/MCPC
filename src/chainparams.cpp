@@ -114,7 +114,7 @@ public:
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 21000000 * COIN;
 
-        nForkTimestamp = 1552406400;  // Tuesday, 12 March 2019, 16:00:00 GMT/UTC
+        nForkTimestamp = 1554026400;  // Sunday, 31 March 2019, 10:00:00 GMT/UTC
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
