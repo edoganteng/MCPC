@@ -56,8 +56,11 @@ inline int64_t GetMNCollateral(int nHeight) {
 
 	if (nHeight < 129000) {
 		return 1000;
-	} else
+	} else if (nHeight >= 129000 && nHeight <= 265000) {
 		return 5000;
+  } else {
+    return 10000;
+  }
 }
 
 /** Default for -blockspamfilter, use header spam filter */
