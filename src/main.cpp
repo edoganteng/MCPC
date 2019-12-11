@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The MCPCoin developers
+// Copyright (c) 2018-2019 The MCPCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1856,25 +1856,115 @@ int64_t GetBlockValue(int nHeight)
 	else if (nHeight <= 529999 && nHeight >= 520000) {
         nSubsidy = 6.2 * COIN;
     }
-	else if (nHeight >= 530000) {
+	else if (nHeight <= 529999 && nHeight >= 520000) {
         nSubsidy = 6 * COIN;
     }
-    else {
+  else if (nHeight <= 559999 && nHeight >= 530000) {
+        nSubsidy = 5.9 * COIN;
+    }
+  else if (nHeight <= 589999 && nHeight >= 560000) {
+        nSubsidy = 5.8 * COIN;
+    }
+  else if (nHeight <= 619999 && nHeight >= 590000) {
+        nSubsidy = 5.7 * COIN;
+    }
+  else if (nHeight <= 649999 && nHeight >= 620000) {
+        nSubsidy = 5.6 * COIN;
+    }
+  else if (nHeight <= 679999 && nHeight >= 650000) {
+        nSubsidy = 5.5 * COIN;
+    }
+  else if (nHeight <= 709999 && nHeight >= 680000) {
+        nSubsidy = 5.4 * COIN;
+    }
+  else if (nHeight <= 739999 && nHeight >= 710000) {
+        nSubsidy = 5.3 * COIN;
+    }
+  else if (nHeight <= 769999 && nHeight >= 740000) {
+        nSubsidy = 5.2 * COIN;
+    }
+  else if (nHeight <= 799999 && nHeight >= 770000) {
+        nSubsidy = 5.1 * COIN;
+    }
+  else if (nHeight <= 829999 && nHeight >= 800000) {
+        nSubsidy = 5 * COIN;
+    }
+  else if (nHeight <= 859999 && nHeight >= 830000) {
+        nSubsidy = 4.9 * COIN;
+    }
+  else if (nHeight <= 889999 && nHeight >= 860000) {
+        nSubsidy = 4.8 * COIN;
+    }
+  else if (nHeight <= 919999 && nHeight >= 890000) {
+        nSubsidy = 4.7 * COIN;
+    }
+  else if (nHeight <= 949999 && nHeight >= 920000) {
+        nSubsidy = 4.6 * COIN;
+    }
+  else if (nHeight <= 979999 && nHeight >= 950000) {
+        nSubsidy = 4.5 * COIN;
+    }
+  else if (nHeight <= 1009999 && nHeight >= 980000) {
+        nSubsidy = 4.4 * COIN;
+    }
+  else if (nHeight <= 1039999 && nHeight >= 1010000) {
+        nSubsidy = 4.3 * COIN;
+    }
+  else if (nHeight <= 1069999 && nHeight >= 1040000) {
+        nSubsidy = 4.2 * COIN;
+    }
+  else if (nHeight <= 1099999 && nHeight >= 1070000) {
+        nSubsidy = 4.1 * COIN;
+    }
+  else if (nHeight <= 1129999 && nHeight >= 1100000) {
+        nSubsidy = 4 * COIN;
+    }
+  else if (nHeight <= 1159999 && nHeight >= 1130000) {
+        nSubsidy = 3.9 * COIN;
+    }
+  else if (nHeight <= 1189999 && nHeight >= 1160000) {
+        nSubsidy = 3.8 * COIN;
+    }
+  else if (nHeight <= 1219999 && nHeight >= 1190000) {
+        nSubsidy = 3.7 * COIN;
+    }
+  else if (nHeight <= 1249999 && nHeight >= 1220000) {
+        nSubsidy = 3.6 * COIN;
+    }
+  else if (nHeight <= 1279999 && nHeight >= 1250000) {
+        nSubsidy = 3.5 * COIN;
+    }
+  else if (nHeight <= 1309999 && nHeight >= 1280000) {
+        nSubsidy = 3.4 * COIN;
+    }
+  else if (nHeight <= 1339999 && nHeight >= 1310000) {
+        nSubsidy = 3.3 * COIN;
+    }
+  else if (nHeight <= 1369999 && nHeight >= 1340000) {
+        nSubsidy = 3.2 * COIN;
+    }
+  else if (nHeight <= 1399999 && nHeight >= 1370000) {
+        nSubsidy = 3.1 * COIN;
+    }
+  else if (nHeight >= 1400000) {
+        nSubsidy = 3 * COIN;
+    }
+  else {
         nSubsidy = 0 * COIN;
     }
-    return nSubsidy;
+  return nSubsidy;
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
-    int64_t ret = 0;
+  int64_t ret = 0;
 
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+  if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200)
-            return 0;
+          return 0;
     }
 
-    if (nHeight < 20000) {
+  if (nHeight < 20000) {
         ret = blockValue * 0.75;
     }
 	else if (nHeight <= 29999 && nHeight >= 20000) {
@@ -2033,7 +2123,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 	else if (nHeight >= 530000) {
         ret = blockValue * 0.90;
     }
-    else {
+  else {
 		ret = blockValue * 0.50;
 	}
 
@@ -5766,9 +5856,9 @@ int ActiveProtocol()
     // SPORK_14 was used for 70710. Leave it 'ON' so they don't see < 70710 nodes. They won't react to SPORK_15
     // messages because it's not in their code
 
-    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT))
+    if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
-    
+
 
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
 

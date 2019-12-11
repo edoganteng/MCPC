@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The MCPCoin developers
+// Copyright (c) 2018-2019 The MCPCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -176,6 +176,66 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     // Create status bar
     statusBar();
 
+    // Social icons
+    QFrame* frameSocial = new QFrame();
+    frameSocial->setContentsMargins(0, 0, 0, 0);
+    frameSocial->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+    QHBoxLayout* frameSocialLayout = new QHBoxLayout(frameSocial);
+    frameSocialLayout->setContentsMargins(16, 0, 16, 0);
+    frameSocialLayout->setSpacing(16);
+    QLabel* web = new QLabel();
+    web->setObjectName(QStringLiteral("web"));
+    web->setMinimumSize(QSize(21, 21));
+    web->setMaximumSize(QSize(21, 21));
+    web->setBaseSize(QSize(0, 0));
+    web->setCursor(QCursor(Qt::PointingHandCursor));
+    web->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    web->setOpenExternalLinks(true);
+#ifndef QT_NO_TOOLTIP
+    web->setToolTip(QApplication::translate("OverviewPage", "Visit MCPC Website.", nullptr));
+#endif // QT_NO_TOOLTIP
+    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://mobilepaycoin.com\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
+    QLabel* mcm = new QLabel();
+    mcm->setObjectName(QStringLiteral("mcm"));
+    mcm->setMinimumSize(QSize(21, 21));
+    mcm->setMaximumSize(QSize(21, 21));
+    mcm->setBaseSize(QSize(0, 0));
+    mcm->setCursor(QCursor(Qt::PointingHandCursor));
+    mcm->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    mcm->setOpenExternalLinks(true);
+#ifndef QT_NO_TOOLTIP
+    mcm->setToolTip(QApplication::translate("OverviewPage", "Visit MCM Marketplace.", nullptr));
+#endif // QT_NO_TOOLTIP
+    mcm->setText(QApplication::translate("OverviewPage", "<a href=\"https://market.mobilepaycoin.com\"><img src=\":/icons/mcm\" width=\"21\" height=\"21\"></a>", nullptr));
+    QLabel* twitter = new QLabel();
+    twitter->setObjectName(QStringLiteral("twitter"));
+    twitter->setMinimumSize(QSize(21, 21));
+    twitter->setMaximumSize(QSize(21, 21));
+    twitter->setBaseSize(QSize(0, 0));
+    twitter->setCursor(QCursor(Qt::PointingHandCursor));
+    twitter->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    twitter->setOpenExternalLinks(true);
+#ifndef QT_NO_TOOLTIP
+    twitter->setToolTip(QApplication::translate("OverviewPage", "Follow MCPC on Twitter.", nullptr));
+#endif // QT_NO_TOOLTIP
+    twitter->setText(QApplication::translate("OverviewPage", "<a href=\"https://twitter.com/CryptoMcpc\"><img src=\":/icons/twitter\" width=\"21\" height=\"21\"></a>", nullptr));
+    QLabel* discord = new QLabel();
+    discord->setObjectName(QStringLiteral("discord"));
+    discord->setMinimumSize(QSize(21, 21));
+    discord->setMaximumSize(QSize(21, 21));
+    discord->setBaseSize(QSize(0, 0));
+    discord->setCursor(QCursor(Qt::PointingHandCursor));
+    discord->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+    discord->setOpenExternalLinks(true);
+#ifndef QT_NO_TOOLTIP
+    discord->setToolTip(QApplication::translate("OverviewPage", "Join the official MCPC Discord community.", nullptr));
+#endif // QT_NO_TOOLTIP
+    discord->setText(QApplication::translate("OverviewPage", "<a href=\"https://discordapp.com/invite/ECwmrAe\"><img src=\":/icons/discord\" width=\"21\" height=\"21\"></a>", nullptr));
+    frameSocialLayout->addWidget(web);
+    frameSocialLayout->addWidget(mcm);
+    frameSocialLayout->addWidget(twitter);
+    frameSocialLayout->addWidget(discord);
+
     // Status bar notification icons
     QFrame* frameBlocks = new QFrame();
     frameBlocks->setContentsMargins(0, 0, 0, 0);
@@ -185,8 +245,13 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     frameBlocksLayout->setSpacing(3);
     unitDisplayControl = new UnitDisplayStatusBarControl();
     labelStakingIcon = new QLabel();
-    labelEncryptionIcon = new QLabel();
+    labelEncryptionIcon = new QPushButton();
+    labelEncryptionIcon->setObjectName("labelEncryptionIcon");
+    labelEncryptionIcon->setFlat(true); // Make the button look like a label, but clickable
+    labelEncryptionIcon->setStyleSheet(".QPushButton { background-color: rgba(255, 255, 255, 0);}");
+    labelEncryptionIcon->setMaximumSize(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE);
     labelConnectionsIcon = new QPushButton();
+    labelConnectionsIcon->setObjectName("labelConnectionsIcon");
     labelConnectionsIcon->setFlat(true); // Make the button look like a label, but clickable
     labelConnectionsIcon->setStyleSheet(".QPushButton { background-color: rgba(255, 255, 255, 0);}");
     labelConnectionsIcon->setMaximumSize(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE);
@@ -221,6 +286,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
         progressBar->setStyleSheet("QProgressBar { background-color: #F8F8F8; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #00CCFF, stop: 1 #33CCFF); border-radius: 7px; margin: 0px; }");
     }
 
+    statusBar()->addWidget(frameSocial);
     statusBar()->addWidget(progressBarLabel);
     statusBar()->addWidget(progressBar);
     statusBar()->addPermanentWidget(frameBlocks);
@@ -235,6 +301,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     connect(openMNConfEditorAction, SIGNAL(triggered()), rpcConsole, SLOT(showMNConfEditor()));
     connect(showBackupsAction, SIGNAL(triggered()), rpcConsole, SLOT(showBackups()));
     connect(labelConnectionsIcon, SIGNAL(clicked()), rpcConsole, SLOT(showPeers()));
+    connect(labelEncryptionIcon, SIGNAL(clicked()), walletFrame, SLOT(toggleLockWallet()));
 
     // Get restart command-line parameters and handle restart
     connect(rpcConsole, SIGNAL(handleRestart(QStringList)), this, SLOT(handleRestart(QStringList)));
@@ -1114,7 +1181,7 @@ void BitcoinGUI::setEncryptionStatus(int status)
         break;
     case WalletModel::Unlocked:
         labelEncryptionIcon->show();
-        labelEncryptionIcon->setPixmap(QIcon(":/icons/lock_open").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+        labelEncryptionIcon->setIcon(QIcon(":/icons/lock_open").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
         labelEncryptionIcon->setToolTip(tr("Wallet is <b>encrypted</b> and currently <b>unlocked</b>"));
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
@@ -1124,7 +1191,7 @@ void BitcoinGUI::setEncryptionStatus(int status)
         break;
     case WalletModel::UnlockedForAnonymizationOnly:
         labelEncryptionIcon->show();
-        labelEncryptionIcon->setPixmap(QIcon(":/icons/lock_open").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+        labelEncryptionIcon->setIcon(QIcon(":/icons/lock_open").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
         labelEncryptionIcon->setToolTip(tr("Wallet is <b>encrypted</b> and currently <b>unlocked</b> for anonimization and staking only"));
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
@@ -1134,7 +1201,7 @@ void BitcoinGUI::setEncryptionStatus(int status)
         break;
     case WalletModel::Locked:
         labelEncryptionIcon->show();
-        labelEncryptionIcon->setPixmap(QIcon(":/icons/lock_closed").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+        labelEncryptionIcon->setIcon(QIcon(":/icons/lock_closed").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
         labelEncryptionIcon->setToolTip(tr("Wallet is <b>encrypted</b> and currently <b>locked</b>"));
         encryptWalletAction->setChecked(true);
         changePassphraseAction->setEnabled(true);
