@@ -194,7 +194,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
 #ifndef QT_NO_TOOLTIP
     web->setToolTip(QApplication::translate("OverviewPage", "Visit MCPC Website.", nullptr));
 #endif // QT_NO_TOOLTIP
-    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://mobilepaycoin.com\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
+    web->setText(QApplication::translate("OverviewPage", "<a href=\"https://mcpc.io/\"><img src=\":/icons/web\" width=\"21\" height=\"21\"></a>", nullptr));
     QLabel* mcm = new QLabel();
     mcm->setObjectName(QStringLiteral("mcm"));
     mcm->setMinimumSize(QSize(21, 21));
@@ -206,7 +206,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
 #ifndef QT_NO_TOOLTIP
     mcm->setToolTip(QApplication::translate("OverviewPage", "Visit MCM Marketplace.", nullptr));
 #endif // QT_NO_TOOLTIP
-    mcm->setText(QApplication::translate("OverviewPage", "<a href=\"https://market.mobilepaycoin.com\"><img src=\":/icons/mcm\" width=\"21\" height=\"21\"></a>", nullptr));
+    mcm->setText(QApplication::translate("OverviewPage", "<a href=\"https://market.mcpc.io/\"><img src=\":/icons/mcm\" width=\"21\" height=\"21\"></a>", nullptr));
     QLabel* twitter = new QLabel();
     twitter->setObjectName(QStringLiteral("twitter"));
     twitter->setMinimumSize(QSize(21, 21));
